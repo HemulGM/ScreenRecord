@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5D7E2432-16FB-4399-8729-2A3FC93E8E59}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ScreenRecord.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="StreamClient\Mobile\ClientTether.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ScreenRecord">
+        <MSBuild Projects="ScreenRecord.dproj"/>
+    </Target>
+    <Target Name="ScreenRecord:Clean">
+        <MSBuild Projects="ScreenRecord.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ScreenRecord:Make">
+        <MSBuild Projects="ScreenRecord.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ClientTether">
+        <MSBuild Projects="StreamClient\Mobile\ClientTether.dproj"/>
+    </Target>
+    <Target Name="ClientTether:Clean">
+        <MSBuild Projects="StreamClient\Mobile\ClientTether.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ClientTether:Make">
+        <MSBuild Projects="StreamClient\Mobile\ClientTether.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ScreenRecord;ClientTether"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ScreenRecord:Clean;ClientTether:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ScreenRecord:Make;ClientTether:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

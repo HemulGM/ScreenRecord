@@ -1,0 +1,75 @@
+object Form14: TForm14
+  Left = 0
+  Top = 0
+  Caption = 'Form14'
+  ClientHeight = 320
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  OnDestroy = FormDestroy
+  DesignerMasterStyle = 0
+  object Image1: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 441.000000000000000000
+    Size.Height = 305.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Button1: TButton
+    Position.X = 456.000000000000000000
+    Position.Y = 8.000000000000000000
+    TabOrder = 1
+    Text = 'Button1'
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Position.X = 544.000000000000000000
+    Position.Y = 8.000000000000000000
+    TabOrder = 2
+    Text = 'Button2'
+    OnClick = Button2Click
+  end
+  object TetheringAppProfile1: TTetheringAppProfile
+    Manager = DesktopTetherManager
+    Text = 'TetheringAppProfile1'
+    Group = 'TetherDesktop'
+    Actions = <
+      item
+        Name = 'acFullShot'
+        IsPublic = True
+        NotifyUpdates = False
+      end
+      item
+        Name = 'acStartCast'
+        IsPublic = True
+        NotifyUpdates = False
+      end
+      item
+        Name = 'acStopCast'
+        IsPublic = True
+        NotifyUpdates = False
+      end>
+    Resources = <
+      item
+        Name = 'BmpCast'
+        IsPublic = True
+        ResType = Stream
+      end>
+    Left = 296
+    Top = 160
+  end
+  object DesktopTetherManager: TTetheringManager
+    OnRequestManagerPassword = DesktopTetherManagerRequestManagerPassword
+    Password = 'Desktop'
+    Text = 'DesktopTetherManager'
+    AllowedAdapters = 'Network'
+    Left = 136
+    Top = 72
+  end
+end
