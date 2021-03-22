@@ -1,4 +1,4 @@
-# ScreenRecordAndStream
+п»ї# ScreenRecordAndStream
  Screen record and Stream
 
- Зависимость https://github.com/HemulGM/Components (HGM.Screenshot.pas)
+ Р—Р°РІРёСЃРёРјРѕСЃС‚СЊ https://github.com/HemulGM/Components (HGM.Screenshot.pas)
