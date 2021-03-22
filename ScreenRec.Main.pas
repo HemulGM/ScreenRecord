@@ -1,4 +1,4 @@
-unit ScreenRec.Main;
+п»їunit ScreenRec.Main;
 
 interface
 
@@ -41,17 +41,17 @@ uses
 
 procedure TForm14.Button1Click(Sender: TObject);
 begin
-  //Открыть аудиопоток
+  //РћС‚РєСЂС‹С‚СЊ Р°СѓРґРёРѕРїРѕС‚РѕРє
   //FAviWriter.Start;
-  //Начать запись экрана
+  //РќР°С‡Р°С‚СЊ Р·Р°РїРёСЃСЊ СЌРєСЂР°РЅР°
   FScreenRecorder.Start;
 end;
 
 procedure TForm14.Button2Click(Sender: TObject);
 begin
-  //Закончить запись экрана (и подождать завершения)
+  //Р—Р°РєРѕРЅС‡РёС‚СЊ Р·Р°РїРёСЃСЊ СЌРєСЂР°РЅР° (Рё РїРѕРґРѕР¶РґР°С‚СЊ Р·Р°РІРµСЂС€РµРЅРёСЏ)
   FScreenRecorder.Stop(True);
-  //Закончить видеопоток и сохранить
+  //Р—Р°РєРѕРЅС‡РёС‚СЊ РІРёРґРµРѕРїРѕС‚РѕРє Рё СЃРѕС…СЂР°РЅРёС‚СЊ
   //FAviWriter.Save;
 end;
 
@@ -68,22 +68,22 @@ begin
   Image1.Bitmap.LoadFromStream(Stream);
   Stream.Position := 0;
 
-  //Добавление в видео поток
+  //Р”РѕР±Р°РІР»РµРЅРёРµ РІ РІРёРґРµРѕ РїРѕС‚РѕРє
   //FAviWriter.AddVideo(Stream);
   //
-  //Стриминг кадров напрямую
+  //РЎС‚СЂРёРјРёРЅРі РєР°РґСЂРѕРІ РЅР°РїСЂСЏРјСѓСЋ
   if FShareStream = nil then
     FShareStream := TMemoryStream.Create;
   FShareStream.Size := 0;
 
-  //Конвертируем в JPEG
+  //РљРѕРЅРІРµСЂС‚РёСЂСѓРµРј РІ JPEG
   Codec.Quality := 70;
   Surface := TBitmapSurface.Create;
   Surface.Assign(Image1.Bitmap);
   TBitmapCodecManager.SaveToStream(FShareStream, Surface, '.jpg', @Codec);
   Surface.Free;
 
-  //Отправляем кадр
+  //РћС‚РїСЂР°РІР»СЏРµРј РєР°РґСЂ
   FShareStream.Position := 0;
   TetheringAppProfile1.Resources.Items[0].Value := FShareStream;
 end;
@@ -95,14 +95,14 @@ end;
 
 procedure TForm14.FormCreate(Sender: TObject);
 begin
-  //Видеофайл
+  //Р’РёРґРµРѕС„Р°Р№Р»
   FAviWriter := TAviWriter.Create(nil);
   FAviWriter.Width := Screen.Width;
   FAviWriter.Height := Screen.Height;
   FAviWriter.FileName := 'test.avi';
   FAviWriter.FrameTime := 80;
 
-  //Запись экрана
+  //Р—Р°РїРёСЃСЊ СЌРєСЂР°РЅР°
   FScreenRecorder := TScreenRecorder.Create;
   FScreenRecorder.OnReadyFrame := FOnReadyFrame;
 end;
